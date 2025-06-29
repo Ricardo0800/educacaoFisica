@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capoeira - Arte, Luta e Cultura</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-menu a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        main {
+            margin-top: 80px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h2 {
+            color: #4a5568;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .video-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: white;
+            text-align: center;
+        }
+
+        .video-placeholder i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.7;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .technique-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .technique-card:hover {
+            transform: scale(1.05);
+        }
+
+        .technique-card i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .map-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .location-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            background: #f7fafc;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .location-item:hover {
+            background: #edf2f7;
+            transform: translateX(5px);
+        }
+
+        .location-item i {
+            color: #667eea;
+            margin-right: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: white;
+            margin-top: 4rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.2);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transform-origin: left;
+            transform: scaleX(0);
+            z-index: 1001;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-indicator"></div>
+    
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">🥋 Capoeira</div>
+                <ul class="nav-menu">
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#historia">História</a></li>
+                    <li><a href="#entrevista">Entrevista</a></li>
+                    <li><a href="#movimentos">Movimentos</a></li>
+                    <li><a href="#locais">Locais</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="inicio" class="hero">
+            <div class="container">
+                <h1>Capoeira</h1>
+                <p>Arte marcial brasileira que combina luta, dança, música e cultura</p>
+            </div>
+        </section>
+
+        <div class="container">
+            <section id="historia" class="card">
+                <h2><i class="fas fa-book"></i> História da Capoeira</h2>
+                <p>A capoeira é uma expressão cultural brasileira que nasceu no período colonial, criada pelos escravos africanos como forma de resistência e preservação cultural. Inicialmente desenvolvida nos quilombos, a capoeira combina elementos de luta, dança, acrobacia e música.</p>
+                
+                <h3>Origens</h3>
+                <p>Suas raízes remontam às tradições de luta africanas, especialmente de Angola. Os escravos desenvolveram esta arte como forma de treinar combate disfarçado de dança, evitando a repressão dos senhores de engenho.</p>
+                
+                <h3>Evolução</h3>
+                <p>No século XX, a capoeira foi sistematizada por mestres como Mestre Bimba (Capoeira Regional) e Mestre Pastinha (Capoeira Angola), ganhando reconhecimento nacional e internacional.</p>
+            </section>
+
+            <section id="entrevista" class="card">
+                <h2><i class="fas fa-video"></i> Entrevista e Demonstração</h2>
+                <p>Confira nossa entrevista exclusiva sobre capoeira, com demonstrações práticas dos principais movimentos e golpes:</p>
+                
+                <div class="video-container">
+                    <video controls width="100%" height="100%" style="border-radius: 15px;">
+                        <source src="Video Pronto Pequeno.mp4" type="video/mp4">
+                        <div class="video-placeholder">
+                            <i class="fas fa-video"></i>
+                            <h3>Vídeo não encontrado</h3>
+                            <p>Certifique-se de que o arquivo "Video Pronto Pequeno.mp4" está na mesma pasta deste HTML</p>
+                            <br>
+                            <p><strong>Alternativa:</strong> Assista no Google Drive:</p>
+                            <a href="https://drive.google.com/file/d/1oDMLF3fdHH7QfGfW8WCdfHDUaScMeXKW/view?usp=sharing" 
+                               target="_blank" class="btn" style="margin-top: 1rem;">
+                                <i class="fas fa-external-link-alt"></i> Assistir no Drive
+                            </a>
+                        </div>
+                    </video>
+                </div>
+            </section>
+
+            <section id="movimentos" class="card">
+                <h2><i class="fas fa-fist-raised"></i> Principais Movimentos</h2>
+                <div class="grid">
+                    <div class="technique-card">
+                        <i class="fas fa-hurricane"></i>
+                        <h3>Ginga</h3>
+                        <p>Movimento básico da capoeira, é a base de todos os outros movimentos</p>
+                    </div>
+                    <div class="technique-card">
+                        <i class="fas fa-shoe-prints"></i>
+                        <h3>Meia Lua</h3>
+                        <p>Chute circular executado com a parte interna do pé</p>
+                    </div>
+                    <div class="technique-card">
+                        <i class="fas fa-hand-rock"></i>
+                        <h3>Martelo</h3>
+                        <p>Chute frontal com o peito do pé</p>
+                    </div>
+                    <div class="technique-card">
+                        <i class="fas fa-undo"></i>
+                        <h3>Esquiva</h3>
+                        <p>Movimento de defesa para evitar ataques</p>
+                    </div>
+                    <div class="technique-card">
+                        <i class="fas fa-sync-alt"></i>
+                        <h3>Au</h3>
+                        <p>Movimento acrobático similar à estrela</p>
+                    </div>
+                    <div class="technique-card">
+                        <i class="fas fa-hands"></i>
+                        <h3>Bananeira</h3>
+                        <p>Equilíbrio sobre as mãos</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="locais" class="map-section">
+                <h2><i class="fas fa-map-marker-alt"></i> Capoeiristas e Grupos Próximos</h2>
+                <p>Encontre grupos de capoeira e mestres na sua região:</p>
+                
+                <div class="location-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <strong>Centro Cultural Raízes do Brasil - Brasília</strong><br>
+                        <span>Asa Norte, W3 SUL</span><br>
+                        <small>Contato: (61) 99543-6651</small>
+                    </div>
+                </div>
+                
+                <div class="location-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <strong>Associação Capoeira Roda Livre</strong><br>
+                        <span>Taguatinga St. M-Norte QNM 34</span><br>
+                        <small>Contato: (61) 98388-7214</small>
+                    </div>
+                </div>
+                
+               
+                
+                <div class="location-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <strong>Capoeira Regional Ceilândia</strong><br>
+                        <span>Ceilândia Norte</span><br>
+                        <small>Contato: (61) 97616-4365</small>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2><i class="fas fa-music"></i> Instrumentos da Capoeira</h2>
+                <p>A música é fundamental na roda de capoeira. Os principais instrumentos são:</p>
+                <ul style="margin: 1rem 0; padding-left: 2rem;">
+                    <li><strong>Berimbau:</strong> Instrumento principal, marca o ritmo da roda</li>
+                    <li><strong>Pandeiro:</strong> Adiciona percussão e alegria</li>
+                    <li><strong>Atabaque:</strong> Tambor que dá base rítmica</li>
+                    <li><strong>Agogô:</strong> Instrumento metálico de duas campanas</li>
+                    <li><strong>Reco-reco:</strong> Instrumento de fricção</li>
+                </ul>
+            </section>
+
+            <section class="card">
+                <h2><i class="fas fa-graduation-cap"></i> Graduações na Capoeira</h2>
+                <p>O sistema de graduação varia entre grupos, mas geralmente segue esta ordem:</p>
+                <div class="grid">
+                    <div style="text-align: center; padding: 1rem;">
+                        <div style="width: 50px; height: 10px; background: #e3d8ff; margin: 0 auto 0.5rem; border-radius: 5px;"></div>
+                        <strong>Iniciante</strong>
+                    </div>
+                    <div style="text-align: center; padding: 1rem;">
+                        <div style="width: 50px; height: 10px; background: #0400ff; margin: 0 auto 0.5rem; border-radius: 5px;"></div>
+                        <strong>Graduado</strong>
+                    </div>
+                    <div style="text-align: center; padding: 1rem;">
+                        <div style="width: 50px; height: 10px; background: #854700; margin: 0 auto 0.5rem; border-radius: 5px;"></div>
+                        <strong>Formado</strong>
+                    </div>
+                    <div style="text-align: center; padding: 1rem;">
+                        <div style="width: 50px; height: 10px; background: #ffffff; margin: 0 auto 0.5rem; border-radius: 5px;"></div>
+                        <strong>Mestre</strong>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <h3>Links Úteis</h3>
+            <div class="social-links">
+                <a href="https://www.youtube.com/results?search_query=capoeira+brasilia" target="_blank" title="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://www.instagram.com/explore/tags/capoeirabrasilia/" target="_blank" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.facebook.com/groups/capoeirabrasilia" target="_blank" title="Facebook">
+                    <i class="fab fa-facebook"></i>
+                </a>
+            </div>
+            <p>Desenvolvido para trabalho de Educação Física - 2025 <br>Desenvolvedores: Ricardo Felix <br>Diretor do projeto: Guilherme Cunha <br>Entrevistador: Enzo Vilarinho <br>Cinegrafista: Samuel Davi <br> Participação especial: Luiz Felipe (3A)</p>
+            <p style="font-size: 0.9rem; opacity: 0.7;">Capoeira: Patrimônio Cultural Imaterial da Humanidade (UNESCO)</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll indicator
+        window.addEventListener('scroll', () => {
+            const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            document.querySelector('.scroll-indicator').style.transform = `scaleX(${scrolled / 100})`;
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Card animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Header transparency on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(0, 0, 0, 0.3)';
+            } else {
+                header.style.background = 'rgba(0, 0, 0, 0.1)';
+            }
+        });
+    </script>
+</body>
+</html>
